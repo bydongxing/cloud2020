@@ -9,8 +9,15 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+
+    <modules>
+        <module>cloud-provider-payment8001</module>
+        <module>cloud-consumer-order80</module>
+        <module>cloud-api-commons</module>
+    </modules>
+
+
     <properties>
-        <project.version>1.0.0</project.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.version>3.7.0</maven.compiler.version>
@@ -25,6 +32,7 @@
         <commons.io.version>2.5</commons.io.version>
         <fastjson.version>1.2.73</fastjson.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <druid.version>1.1.23</druid.version>
         <hutool.version>5.4.0</hutool.version>
         <jetcache.version>2.6.0</jetcache.version>
         <xxl-job.version>2.2.0</xxl-job.version>
@@ -116,6 +124,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>
