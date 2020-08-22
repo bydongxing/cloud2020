@@ -6,6 +6,10 @@ spring:
     name: cloud-payment-service
   datasource:
 #    type: com.alibaba.druid.pool.DruidDataSource
+#    url: jdbc:mysql://localhost:3306/cloud2020?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true&useAffectedRows=true
+#    username: root
+#    password: root123
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       url: jdbc:mysql://localhost:3306/cloud2020?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true&useAffectedRows=true
       username: root
@@ -99,3 +103,15 @@ mybatis-plus:
   type-enums-package: com.xavier.dong.springcloud.enums
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.xavier.dong.springcloud.entity.po
+
+
+
+# Eureka
+eureka:
+  client:
+    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+    register-with-eureka: true
+    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka

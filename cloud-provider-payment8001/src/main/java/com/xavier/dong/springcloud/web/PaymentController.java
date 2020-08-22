@@ -6,6 +6,7 @@ import com.xavier.dong.springcloud.entity.po.Payment;
 import com.xavier.dong.springcloud.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(rollbackFor = Exception.class)
 public class PaymentController {
 
     private final PaymentService paymentService;
