@@ -126,3 +126,13 @@ eureka:
     service-url:
       # 集群版
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  # 注册到 EurekaServer 上的 实例 名称
+  instance:
+    instance-id: payment8001
+    # 访问 路径 可以显示 IP 地址
+    prefer-ip-address: true
+    # 心跳检测 与 续约时间
+    # Eureka 客户端 向 服务端 发送 心跳的时间间隔，单位为 秒（默认为 30秒）
+    lease-renewal-interval-in-seconds: 1
+    # Eureka 服务端 在收到 最后 一次 心跳后等待时间的上限，单位为 秒 （默认为 90秒），超时 将 剔除 服务
+    lease-expiration-duration-in-seconds: 2

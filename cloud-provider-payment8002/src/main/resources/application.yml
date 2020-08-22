@@ -126,3 +126,8 @@ eureka:
     service-url:
       # 集群版
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  # 注册到 EurekaServer 上的 实例 名称
+  instance:
+    instance-id: payment8002
+    # 访问 路径 可以显示 IP 地址
+    prefer-ip-address: true
