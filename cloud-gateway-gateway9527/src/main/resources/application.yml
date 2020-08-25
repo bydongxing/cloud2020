@@ -1,0 +1,55 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway
+  # 网关的配置方式
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true   # 开启从注册中心 动态创建路由的功能，利用 微服务名称 进行 路由
+      routes:
+        # 路由ID，要求唯一
+        - id: payment_route1
+          # 匹配后 提供服务的 路由地址
+#          uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            # 断言，路径 匹配的进行路由
+            - Path=/payment/get/**
+        - id: payment_route2
+#          uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/lb/**
+#            # 在这个时间后 才能生效
+#            - After=2020-08-25T15:55:36.569+08:00[Asia/Shanghai]
+#            # 在这个时间前 才能生效
+##            - Before=2020-08-26T17:55:36.569+08:00[Asia/Shanghai]
+#            # 在这个时间 区间中 才能生效
+##            - Between=2020-08-25T18:55:36.569+08:00[Asia/Shanghai],2020-08-26T17:55:36.569+08:00[Asia/Shanghai]
+#            # curl http://localhost:9527/payment/lb --cookie "username=xavierdong"
+#            - Cookie=username,xavierdong
+#            # curl http://localhost:9527/payment/lb -b "username=xavierdong" -H "X-Request-Id:123"
+#            - Header=X-Request-Id,\d+ # 请求头要有 X-Request-Id 属性，并且 值 为整数的 正则表达式
+#            # curl http://localhost:9527/payment/lb -b "username=xavierdong" -H "X-Request-Id:123" -H "Host:1111.xavierdong.com"
+#            - Host=**.xavierdong.com
+#            - Method=GET,POST
+#            # 要有 参数名 username，并且值还要是 整数才能路由
+#            # curl http://localhost:9527/payment/lb?username=31 -b "username=xavierdong" -H "X-Request-Id:123" -H "Host:1111.xavierdong.com"
+#            - Query=username,\d+
+#          filters:
+#            - AddRequestHeader=X-Request-red, blue
+
+# Eureka 集群版
+eureka:
+  client:
+    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+    register-with-eureka: true
+    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+    fetch-registry: true
+    service-url:
+      # 集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
