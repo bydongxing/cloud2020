@@ -1,0 +1,43 @@
+server:
+  port: 80
+
+## Eureka 单机版
+#eureka:
+#  client:
+#    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true -- 如果不想被别人调用，则设置为 false
+#    register-with-eureka: false
+#    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:7001/eureka
+
+# Eureka 集群版
+eureka:
+  client:
+    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+    register-with-eureka: true
+    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+    fetch-registry: true
+    service-url:
+      # 集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+spring:
+  application:
+    name: cloud-feign-hystrix-order
+
+# feign 客户端 超时时间（openfeign 默认支持 Ribbon）
+ribbon:
+  # 指的是 建立 连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间, 单位 毫秒
+  ReadTimeout: 5000
+  # 指的是 建立连接后，从服务器读取到 可用资源所用的时间, 单位 毫秒
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    # feign 日志 以 什么级别 监控 哪个接口
+    com.xavier.dong.springcloud.service.PaymentFeignService: debug
+
+# 开启 支持 hystrix
+feign:
+  hystrix:
+    enabled: true
