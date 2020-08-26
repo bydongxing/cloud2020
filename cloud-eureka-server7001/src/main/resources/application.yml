@@ -1,35 +1,35 @@
 server:
   port: 7001
 
-## 单机版
-#eureka:
-#  instance:
-#    # eureka 服务端的 实例名称
-#    hostname: localhost
-#  client:
-#    # false 表示 不向 注册中心 注册自己
-#    register-with-eureka: false
-#    # false 表示 自己就是 注册中心，我的职责 是维护 服务实例，并不需要去检索服务
-#    fetch-registry: false
-#    service-url:
-#      # 设置 与 Eureka Server 交互的地址 查询服务 和 注册服务 都需要 依赖这个地址
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-# 集群版
+# 单机版
 eureka:
   instance:
     # eureka 服务端的 实例名称
-    hostname: eureka7001.com
+    hostname: localhost
   client:
     # false 表示 不向 注册中心 注册自己
     register-with-eureka: false
     # false 表示 自己就是 注册中心，我的职责 是维护 服务实例，并不需要去检索服务
     fetch-registry: false
     service-url:
-      # 设置 与 Eureka Server 交互的地址 查询服务 和 注册服务 都需要 依赖这个地址，需要注册到  另一个地址上，相互注册
-      defaultZone: http://eureka7002.com:7002/eureka/
-  server:
-    # 关闭自我保护机制， 保证 不可用的服务 及时 被 剔除
-    enable-self-preservation: false
-    # 默认为 90秒 才剔除
-    eviction-interval-timer-in-ms: 2000
+      # 设置 与 Eureka Server 交互的地址 查询服务 和 注册服务 都需要 依赖这个地址
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+## 集群版
+#eureka:
+#  instance:
+#    # eureka 服务端的 实例名称
+#    hostname: eureka7001.com
+#  client:
+#    # false 表示 不向 注册中心 注册自己
+#    register-with-eureka: false
+#    # false 表示 自己就是 注册中心，我的职责 是维护 服务实例，并不需要去检索服务
+#    fetch-registry: false
+#    service-url:
+#      # 设置 与 Eureka Server 交互的地址 查询服务 和 注册服务 都需要 依赖这个地址，需要注册到  另一个地址上，相互注册
+#      defaultZone: http://eureka7002.com:7002/eureka/
+#  server:
+#    # 关闭自我保护机制， 保证 不可用的服务 及时 被 剔除
+#    enable-self-preservation: false
+#    # 默认为 90秒 才剔除
+#    eviction-interval-timer-in-ms: 2000

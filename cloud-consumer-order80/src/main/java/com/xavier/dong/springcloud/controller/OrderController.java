@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/consumer")
 @RequiredArgsConstructor
 public class OrderController {
-//    private static final String PAYMENT_URL = "http://localhost:8001";
+    //    private static final String PAYMENT_URL = "http://localhost:8001";
     private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";  // 服务提供者，在 EurekaServer 上的名称
 
 
@@ -50,6 +50,12 @@ public class OrderController {
         URI uri = instance.getUri();
         return this.restTemplate.getForObject(uri + "/payment/lb", String.class);
 
+    }
+
+    //     zipkin+ sleuth
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin() {
+        return this.restTemplate.getForObject("http://localhost:8001/payment/zipkin", String.class);
     }
 
 }

@@ -73,6 +73,15 @@ spring:
         allow: ''
         login-username: hp
         login-password: tiger
+  # zipkin 的配置
+  zipkin:
+    # zipkin 的地址
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率 值 介于 0 到 1 之间，1表示 全部采集
+      probability: 1
+
 # mp
 mybatis-plus:
   configuration:
@@ -106,17 +115,7 @@ mybatis-plus:
 
 
 
-## Eureka 单机版
-#eureka:
-#  client:
-#    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
-#    register-with-eureka: true
-#    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://localhost:7001/eureka
-
-# Eureka 集群版
+# Eureka 单机版
 eureka:
   client:
     # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
@@ -124,15 +123,25 @@ eureka:
     # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
     fetch-registry: true
     service-url:
-      # 集群版
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
-  # 注册到 EurekaServer 上的 实例 名称
-  instance:
-    instance-id: payment8001
-    # 访问 路径 可以显示 IP 地址
-    prefer-ip-address: true
-    # 心跳检测 与 续约时间
-    # Eureka 客户端 向 服务端 发送 心跳的时间间隔，单位为 秒（默认为 30秒）
-    lease-renewal-interval-in-seconds: 1
-    # Eureka 服务端 在收到 最后 一次 心跳后等待时间的上限，单位为 秒 （默认为 90秒），超时 将 剔除 服务
-    lease-expiration-duration-in-seconds: 2
+      defaultZone: http://localhost:7001/eureka
+
+## Eureka 集群版
+#eureka:
+#  client:
+#    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+#    register-with-eureka: true
+#    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+#    fetch-registry: true
+#    service-url:
+#      # 集群版
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+#  # 注册到 EurekaServer 上的 实例 名称
+#  instance:
+#    instance-id: payment8001
+#    # 访问 路径 可以显示 IP 地址
+#    prefer-ip-address: true
+#    # 心跳检测 与 续约时间
+#    # Eureka 客户端 向 服务端 发送 心跳的时间间隔，单位为 秒（默认为 30秒）
+#    lease-renewal-interval-in-seconds: 1
+#    # Eureka 服务端 在收到 最后 一次 心跳后等待时间的上限，单位为 秒 （默认为 90秒），超时 将 剔除 服务
+#    lease-expiration-duration-in-seconds: 2

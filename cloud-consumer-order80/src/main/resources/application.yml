@@ -1,26 +1,34 @@
 server:
   port: 80
 
-## Eureka 单机版
-#eureka:
-#  client:
-#    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true -- 如果不想被别人调用，则设置为 false
-#    register-with-eureka: false
-#    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://localhost:7001/eureka
-
-# Eureka 集群版
+# Eureka 单机版
 eureka:
   client:
-    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
-    register-with-eureka: true
+    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true -- 如果不想被别人调用，则设置为 false
+    register-with-eureka: false
     # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
     fetch-registry: true
     service-url:
-      # 集群版
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      defaultZone: http://localhost:7001/eureka
+
+## Eureka 集群版
+#eureka:
+#  client:
+#    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+#    register-with-eureka: true
+#    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+#    fetch-registry: true
+#    service-url:
+#      # 集群版
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
 spring:
   application:
-    name: cloud-order-service
+    name: cloud-order-consumer
+  # zipkin 的配置
+  zipkin:
+    # zipkin 的地址
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率 值 介于 0 到 1 之间，1表示 全部采集
+      probability: 1
