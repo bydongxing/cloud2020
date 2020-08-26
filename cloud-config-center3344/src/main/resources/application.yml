@@ -29,3 +29,16 @@ spring:
           password: dongxing065440
       ### 读取的分支
       label: master
+  # rabbitMQ 相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+## rabbitmq 相关配置，暴露 Bus 刷新配置的端点
+management:
+  endpoints: # 暴露 bus 刷新配置的节点
+    web:
+      exposure:
+        include: "bus-refresh"

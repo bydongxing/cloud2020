@@ -28,10 +28,16 @@ spring:
 #      profile: test
 #      profile: prod
       uri: http://localhost:3344
+  # rabbitMQ 相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 # 暴露监控端点
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*" # 'refresh'
