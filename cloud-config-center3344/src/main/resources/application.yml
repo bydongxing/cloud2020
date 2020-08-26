@@ -1,0 +1,31 @@
+server:
+  port: 3344
+
+
+
+# Eureka 集群版
+eureka:
+  client:
+    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+    register-with-eureka: true
+    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+    fetch-registry: true
+    service-url:
+      # 集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+spring:
+  application:
+    name: cloud-config-center # 注册 进 Eureka 服务器的 微服务名
+  cloud:
+    config:
+      server:
+        git:
+          # github 的仓库地址
+          uri: https://github.com/bydongxing/springcloud-config.git
+          ### 搜索的目录
+          search-paths:
+            - springcloud-config
+          username: bydongxing@163.com
+          password: dongxing065440
+      ### 读取的分支
+      label: master

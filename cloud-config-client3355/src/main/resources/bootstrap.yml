@@ -1,0 +1,38 @@
+server:
+  port: 3355
+
+
+
+# Eureka 集群版
+eureka:
+  client:
+    # 表示 是否 将 自己注册进 EurekaServer ，默认为 true
+    register-with-eureka: true
+    # 表示 是否从 EurekaServer 抓取 已有的注册信息，默认为 true。 单节点节点无所谓，集群必须 设置为 true，才能 配合 ribbon 使用 负载均衡
+    fetch-registry: true
+    service-url:
+      # 集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+spring:
+  application:
+    name: cloud-config-client # 注册 进 Eureka 服务器的 微服务名
+  cloud:
+    # config 客户端配置
+    config:
+      # 分支名称
+      label: master
+      # 配置文件名称
+      name: config
+      # 读取后缀名称
+      # 上面 3个 综合：master 分支上 config-dev.yml 的配置文件 被读取。http://localhost:3344/master/config-dev.yml
+      profile: dev
+#      profile: test
+#      profile: prod
+      uri: http://localhost:3344
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
