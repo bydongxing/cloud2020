@@ -1,0 +1,19 @@
+#spring:
+#  profiles:
+#    active: dev
+dubbo:
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
+  protocol:
+    # dubbo 协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: -1
+#    serialization: protobuf
+  cloud:
+    subscribed-services: spring-cloud-alibaba-dubbo-server
+  consumer:
+    timeout: 5000
+    check: false
+    retries: 0

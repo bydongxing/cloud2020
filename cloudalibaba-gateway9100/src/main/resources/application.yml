@@ -1,0 +1,24 @@
+#spring:
+#  profiles:
+#    active: dev
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: web
+          uri: lb://spring-cloud-alibaba-dubbo-client
+          predicates:
+            - Path=/api-web/**
+          filters:
+            - StripPrefix=1
+        - id: rest
+          uri: lb://zlt-rest-dubbo
+          predicates:
+            - Path=/api-rest/**
+          filters:
+            - StripPrefix=1
