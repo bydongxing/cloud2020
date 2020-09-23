@@ -26,7 +26,7 @@ public class RatelimitController {
 
 
     @GetMapping("/rateLimit/byUrl")
-    @SentinelResource(value = "byUrl")
+//    @SentinelResource(value = "byUrl")
     public Result byUrl() {
         return Result.createBySuccess("按Url限流测试OK", Payment.builder().id(2020L).serial("serial002").build());
     }

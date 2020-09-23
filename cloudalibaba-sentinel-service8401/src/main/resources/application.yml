@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloudalibaba-sentinel-service
+    name: cloudalibaba
   cloud:
     nacos:
       discovery:
@@ -12,7 +12,7 @@ spring:
     sentinel:
       transport:
         # 配置 sentinel dashboard 地址
-        dashboard: localhost:8080
+        dashboard: localhost:8021
         # 默认 8719 端口， 假如 被占用 会自动 从 8719 开始 依次 +1 扫描，直至找到 未被占用的端口
         port: 8719
       # 配置 nacos 的地址
@@ -20,10 +20,14 @@ spring:
         ds1:
           nacos:
             server-addr: localhost:8848
-            dataId: cloudalibaba-sentinel-service
+            dataId: cloudalibaba-sentinel
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: flow
+      # 懒加载
+      eager: true
+      log:
+        dir: /opt/application/applogs/csp
 # 暴露管理的端口
 management:
   endpoints:
